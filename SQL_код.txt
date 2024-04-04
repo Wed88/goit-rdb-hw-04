@@ -1,0 +1,56 @@
+Пункт 1
+1.а
+CREATE SCHEMA LibraryManagement;
+
+1.b
+CREATE TABLE authors (
+author_id INT AUTO_INCREMENT PRIMARY KEY,
+author_name VARCHAR(50)
+);
+
+1.c
+CREATE TABLE genres (
+genre_id INT AUTO_INCREMENT PRIMARY KEY,
+genre_name VARCHAR(50)
+);
+
+1.d
+CREATE TABLE books (
+book_id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(50),
+publication_year YEAR,
+author_id INT,
+FOREIGN KEY (author_id) REFERENCES authors(author_id),
+genre_id INT,
+FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+);
+
+1.e
+CREATE TABLE users (
+user_id INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(50),
+email VARCHAR(50)
+);
+
+1.f
+CREATE TABLE borrowed_books (
+borrow_id INT AUTO_INCREMENT PRIMARY KEY,
+book_id INT,
+FOREIGN KEY (book_id) REFERENCES books(book_id),
+user_id INT,
+FOREIGN KEY (user_id) REFERENCES users(user_id),
+borrow_date DATE,
+return_date DATE
+);
+
+Пункт 2
+INSERT INTO authors (author_id, author_name)
+VALUES (1, 'Arthur'),(2, 'Jack');
+INSERT INTO genres (genre_id, genre_name)
+VALUES (1, 'Drama'),(2, 'Detective');
+INSERT INTO books (book_id, title, publication_year, author_id, genre_id)
+VALUES (1, 'Fury', 1999, 1 , 1),(2, 'Gardener', 2006, 2, 2);
+INSERT INTO users (user_id, username, email)
+VALUES (1, 'Bob', 'www.bob@mail.com'),(2, 'Sara', 'www.sara@mail.com');
+INSERT INTO borrowed_books (borrow_id, book_id, user_id, borrow_date, return_date)
+VALUES (1, 1, 1, '2022-02-14', '2022-03-10'),(2, 2, 2, '2023-10-11', '2023-12-31');
