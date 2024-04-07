@@ -54,3 +54,14 @@ INSERT INTO users (user_id, username, email)
 VALUES (1, 'Bob', 'www.bob@mail.com'),(2, 'Sara', 'www.sara@mail.com');
 INSERT INTO borrowed_books (borrow_id, book_id, user_id, borrow_date, return_date)
 VALUES (1, 1, 1, '2022-02-14', '2022-03-10'),(2, 2, 2, '2023-10-11', '2023-12-31');
+
+Пункт 3
+SELECT *
+FROM order_details
+INNER JOIN orders ON orders.id = order_details.order_id
+INNER JOIN products ON products.id = order_details.product_id
+INNER JOIN suppliers ON suppliers.id = products.supplier_id
+INNER JOIN categories ON categories.id = products.category_id
+INNER JOIN customers ON customers.id = orders.customer_id
+INNER JOIN employees ON employees.employee_id = orders.employee_id
+INNER JOIN shippers ON shippers.id = orders.shipper_id;
